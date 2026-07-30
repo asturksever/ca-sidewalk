@@ -1,16 +1,16 @@
 name: Build PMTiles
 
-# Turns the conflated network (uploaded as a Release asset by the local
-# pipeline) into a national PMTiles archive, attached back to the release.
-# tippecanoe runs here because the dev machine cannot execute locally built
-# binaries.
+# Turns the conflated network into a national PMTiles archive.
+# The dev machine cannot run tippecanoe (binary-authorization lockdown) and has
+# SSH-only GitHub access, so: scripts/41_push_data_branch.sh pushes
+# unified.parquet as <100 MB chunks on the `data` branch, this workflow fires
+# on that push, reassembles, tiles, and attaches the result to the tiles-v1
+# release using the runner's own token.
 on:
+  push:
+    branches: [data]
   workflow_dispatch:
     inputs:
-      data_tag:
-        description: Release tag holding unified.parquet
-        default: data-v1
-        required: true
       tiles_tag:
         description: Release tag to attach canada_sidewalks.pmtiles to
         default: tiles-v1
@@ -24,29 +24,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: data
+
+      - name: Reassemble unified.parquet
+        run: |
+          ls -lh data-chunks/
+          cat data-chunks/unified.parquet.part-* > unified.parquet
+          ls -lh unified.parquet
 
       - name: Install tippecanoe
         run: |
-          git clone --depth 1 https://github.com/felt/tippecanoe
-          make -C tippecanoe -j"$(nproc)"
-          sudo make -C tippecanoe install
+          git clone --depth 1 https://github.com/felt/tippecanoe /tmp/tippecanoe
+          make -C /tmp/tippecanoe -j"$(nproc)"
+          sudo make -C /tmp/tippecanoe install
           tippecanoe --version
-
-      - name: Download unified.parquet
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release download "${{ inputs.data_tag }}" --pattern 'unified*.parquet' -D data/
 
       - name: Convert to FlatGeobuf
         run: |
           pip install --quiet pyogrio geopandas pyarrow
           python - <<'EOF'
-          import glob
           import geopandas as gpd
-          src = sorted(glob.glob('data/unified*.parquet'))
-          gdf = gpd.pd.concat([gpd.read_parquet(p) for p in src], ignore_index=True)
-          gdf = gpd.GeoDataFrame(gdf, crs=4326)
-          gdf.to_file('data/unified.fgb', driver='FlatGeobuf')
+          gdf = gpd.read_parquet('unified.parquet')
+          gdf.to_file('unified.fgb', driver='FlatGeobuf')
           print(len(gdf), 'features')
           EOF
 
@@ -56,14 +56,17 @@ jobs:
             --drop-densest-as-needed --extend-zooms-if-still-dropping \
             --coalesce --reorder --hilbert \
             -y provenance -y cls -y street -y muni -y prov -y material -y width \
-            --force data/unified.fgb
+            --force unified.fgb
           ls -lh canada_sidewalks.pmtiles
 
       - name: Attach tiles to release
         env:
           GH_TOKEN: ${{ github.token }}
+          TILES_TAG: ${{ inputs.tiles_tag || 'tiles-v1' }}
         run: |
-          gh release view "${{ inputs.tiles_tag }}" >/dev/null 2>&1 \
-            || gh release create "${{ inputs.tiles_tag }}" --title "PMTiles ${{ inputs.tiles_tag }}" \
+          gh release view "$TILES_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create "$TILES_TAG" --repo "$GITHUB_REPOSITORY" \
+                 --title "PMTiles $TILES_TAG" \
                  --notes "National unified pedestrian network tiles"
-          gh release upload "${{ inputs.tiles_tag }}" canada_sidewalks.pmtiles --clobber
+          gh release upload "$TILES_TAG" canada_sidewalks.pmtiles --clobber \
+            --repo "$GITHUB_REPOSITORY"
