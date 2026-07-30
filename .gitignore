@@ -7,3 +7,4 @@ vendor/
 *.pbf
 *.zip
 .DS_Store
+!public/data/dev_sample.geojson
