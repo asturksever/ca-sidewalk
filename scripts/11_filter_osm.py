@@ -39,9 +39,7 @@ def main():
 
     con = duckdb.connect()
     con.execute("INSTALL spatial; LOAD spatial;")
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    con.execute(f"""
-    COPY (
+    tbl = con.execute(f"""
       WITH src AS (
         SELECT
           feature_id,
@@ -55,7 +53,6 @@ def main():
           tags['access'] AS access,
           geometry
         FROM read_parquet('{gpq}')
-        WHERE ST_GeometryType(geometry) IN ('LINESTRING', 'MULTILINESTRING')
       )
       SELECT
         feature_id AS id,
@@ -78,14 +75,23 @@ def main():
         AND (access IS NULL OR access NOT IN ('private', 'no'))
         AND NOT (highway = 'path' AND foot = 'no')
         AND NOT (highway = 'cycleway' AND (foot IS NULL OR foot NOT IN ('yes', 'designated')))
-    ) TO '{OUT}' (FORMAT parquet);
-    """)
-    n = con.execute(f"SELECT COUNT(*) FROM read_parquet('{OUT}')").fetchone()[0]
-    print(f"wrote {n:,} rows -> {OUT}")
-    for cls, c in con.execute(
-        f"SELECT cls, COUNT(*) FROM read_parquet('{OUT}') GROUP BY 1 ORDER BY 2 DESC"
-    ).fetchall():
-        print(f"  {cls:20s} {c:,}")
+    """).arrow()
+
+    # Re-emit as real GeoParquet (with covering bbox) so 30_conflate.py can use
+    # geopandas bbox pushdown; DuckDB COPY alone writes no geo metadata.
+    import geopandas as gpd
+    import pandas as pd
+    import shapely
+
+    df = tbl.to_pandas()
+    geom = shapely.from_wkb(df.pop("geometry"))
+    gdf = gpd.GeoDataFrame(df, geometry=geom, crs=4326)
+    gdf = gdf[gdf.geometry.geom_type.isin(["LineString", "MultiLineString"])]
+    gdf = gdf.explode(index_parts=False, ignore_index=True)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    gdf.to_parquet(OUT, write_covering_bbox=True)
+    print(f"wrote {len(gdf):,} rows -> {OUT}")
+    print(gdf["cls"].value_counts().to_string())
 
 
 if __name__ == "__main__":
