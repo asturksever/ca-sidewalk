@@ -1,0 +1,9 @@
+node_modules/
+dist/
+data/
+public/data/
+vendor/
+*.pmtiles
+*.pbf
+*.zip
+.DS_Store

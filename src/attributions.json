@@ -1,0 +1,425 @@
+{
+  "national": [
+    {
+      "name": "Statistics Canada — Canadian Pedestrian Network Database (2025)",
+      "statement": "Source: Statistics Canada, Canadian Pedestrian Network Database, Catalogue 34-26-0004, 2025. Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada.",
+      "licence_url": "https://www.statcan.gc.ca/en/reference/licence",
+      "source_url": "https://www150.statcan.gc.ca/n1/pub/34-26-0004/342600042025001-eng.htm"
+    },
+    {
+      "name": "OpenStreetMap",
+      "statement": "© OpenStreetMap contributors, licensed under the Open Database Licence (ODbL).",
+      "licence_url": "https://www.openstreetmap.org/copyright",
+      "source_url": "https://www.openstreetmap.org"
+    },
+    {
+      "name": "OpenFreeMap / OpenMapTiles (basemap)",
+      "statement": "Basemap tiles by OpenFreeMap, schema © OpenMapTiles, data © OpenStreetMap contributors.",
+      "licence_url": "https://openfreemap.org",
+      "source_url": "https://openfreemap.org"
+    }
+  ],
+  "municipal": {
+    "Alberta": [
+      {
+        "municipality": "Airdrie",
+        "statement": "Contains information licensed under the Open Data Licence – City of Airdrie.",
+        "source_url": "https://data-airdrie.opendata.arcgis.com/datasets/airdrie::airdrie-pathway/about",
+        "licence_url": "https://data-airdrie.opendata.arcgis.com/pages/our-open-licence",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Chestermere",
+        "statement": "Contains information made available by the City of Chestermere through their Open Data portal",
+        "source_url": "https://data-chestermere.opendata.arcgis.com/datasets/23e940e9db3444d7a4e4fa8497597a66_0/explore",
+        "licence_url": "https://data-chestermere.opendata.arcgis.com/",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Edmonton",
+        "statement": "Contains information licensed under the Open Government Licence – City of Edmonton",
+        "source_url": "https://data.edmonton.ca/Transportation/trails/ws2s-7zrm/data?no_mobile=true",
+        "licence_url": "https://data.edmonton.ca/stories/s/City-of-Edmonton-Open-Data-Terms-of-Use/msh8-if28/",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Okotoks",
+        "statement": "Contains information licensed under the Open Government Licence - Town of Okotoks",
+        "source_url": "https://okotoksmaps-okotoks.hub.arcgis.com/maps/7378fd08b86146048aa9c2789000b9cc",
+        "licence_url": "https://okotoksmaps-okotoks.hub.arcgis.com/pages/open-data-licence",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Saint_Albert",
+        "statement": "Contains information licensed under the Open Data Licence – City of St. Albert",
+        "source_url": "https://data.stalbert.ca/maps/stalbert::pathways-and-sidewalks",
+        "licence_url": "https://data.stalbert.ca/pages/licence",
+        "last_update": "2023"
+      }
+    ],
+    "British Columbia": [
+      {
+        "municipality": "Burnaby",
+        "statement": "Contains information licensed under the Open Government Licence – City of Burnaby.",
+        "source_url": "https://data.burnaby.ca/datasets/burnaby::urban-paths-trails/explore",
+        "licence_url": "https://data.burnaby.ca/pages/open-government-licence",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Chilliwack",
+        "statement": "Contains information made available by the City of Chilliwack through their Open Data portal",
+        "source_url": "https://www.chilliwack.com/main/page.cfm?id=2331&odAction=viewItem&odID=162",
+        "licence_url": "https://www.chilliwack.com/main/page.cfm?id=2391",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Coquitlam",
+        "statement": "Contains information licensed under the Open Government Licence – Coquitlam.",
+        "source_url": "https://data.coquitlam.ca/datasets/Coquitlam::sidewalks-1/about",
+        "licence_url": "https://www.coquitlam.ca/894/Open-Government-Licence",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Kamloops",
+        "statement": "Contains information licensed under the Open Government Licence - Kamloops",
+        "source_url": "https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataPlanimetric/MapServer/25",
+        "licence_url": "https://www.kamloops.ca/node/29807",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Kelowna",
+        "statement": "Contains information licensed under the Open Government Licence – City of Kelowna.",
+        "source_url": "https://opendata.kelowna.ca/datasets/kelowna::active-transportation-network/about",
+        "licence_url": "https://apps.kelowna.ca/images/opendata/OpenGovernmentLicence.pdf",
+        "last_update": "2016"
+      },
+      {
+        "municipality": "Maple_Ridge",
+        "statement": "Contains information licensed under the Open Government Licence – Maple Ridge.",
+        "source_url": "https://www.arcgis.com/home/item.html?id=f9f30657f7d0403bb93fbadd95c1aaf4",
+        "licence_url": "https://www.mapleridge.ca/terms-use",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Nanaimo",
+        "statement": "Contains information licenced under the Open Government Licence – Nanaimo",
+        "source_url": "https://www.nanaimo.ca/ortho/",
+        "licence_url": "https://www.nanaimo.ca/your-government/maps-data/open-data-catalogue/open-data-catalogue-licence",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "New_Westminster",
+        "statement": "Contains information licenced under the Open Government Licence - City of New Westminster",
+        "source_url": "https://opendata.newwestcity.ca/datasets/newwestcity::greenways-1/about",
+        "licence_url": "https://opendata.newwestcity.ca/pages/terms-of-use",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "North_Vancouver",
+        "statement": "Contains information licensed under the Open Government Licence - North Vancouver",
+        "source_url": "https://www.geoweb.dnv.org/data/",
+        "licence_url": "https://geoweb.dnv.org/data/metadata.php?dataset=TrnBiking#",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Port_Moody",
+        "statement": "Contains information licensed under the Open Government Licence – Port Moody",
+        "source_url": "https://data.portmoody.ca/datasets/63aa875df2b140729fde77f11776a56a/explore",
+        "licence_url": "https://www.portmoody.ca/en/city-hall/open-data-terms-of-use.aspx",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Prince_George",
+        "statement": "Contains information licensed under the Open Government Licence – British Columbia",
+        "source_url": "https://data-cityofpg.opendata.arcgis.com/datasets/CityofPG::sidewalks-1/about",
+        "licence_url": "https://www2.gov.bc.ca/gov/content/data/open-data/open-government-licence-bc",
+        "last_update": "2017"
+      },
+      {
+        "municipality": "Surrey",
+        "statement": "Contains information licensed under the Open Government License – City of Surrey",
+        "source_url": "https://data.surrey.ca/dataset/sidewalks",
+        "licence_url": "https://data.surrey.ca/pages/open-government-licence-surrey",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Vancouver",
+        "statement": "Contains information licensed under the Open Government Licence – Vancouver",
+        "source_url": "https://opendata.vancouver.ca/explore/dataset/greenways/information/",
+        "licence_url": "https://opendata.vancouver.ca/pages/licence/",
+        "last_update": "2020"
+      },
+      {
+        "municipality": "Vernon",
+        "statement": "Contains information made available by the City of Vernon Open Data Portal",
+        "source_url": "https://www.arcgis.com/home/item.html?id=e673605087204dfcb897de2ed1ec2e5a",
+        "licence_url": "https://www.vernon.ca/government-services/maps-gis/open-data-catalogue",
+        "last_update": "2018"
+      },
+      {
+        "municipality": "Victoria",
+        "statement": "Contains information licensed under the Open Government Licence – City of Victoria",
+        "source_url": "https://opendata.victoria.ca/datasets/59ad379b2a38458288d618060e435b51_5/explore",
+        "licence_url": "https://opendata.victoria.ca/pages/open-data-licence",
+        "last_update": "2024"
+      }
+    ],
+    "Manitoba": [
+      {
+        "municipality": "Winnipeg",
+        "statement": "Contains information licensed under the Open Government Licence – Winnipeg",
+        "source_url": "https://data.winnipeg.ca/City-Planning/Walkways/jdeq-xf3y/about_data",
+        "licence_url": "https://data.winnipeg.ca/open-data-licence",
+        "last_update": "2023"
+      }
+    ],
+    "New Brunswick": [
+      {
+        "municipality": "Fredericton",
+        "statement": "Contains information licensed under the Open Government Licence – New Brunswick",
+        "source_url": "https://cdn.arcgis.com/home/item.html?id=abdf247442bc41cdb7dc1162aea349a4",
+        "licence_url": "http://www.snb.ca/e/2000/data-E.html",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Moncton",
+        "statement": "Contains information made available by the City of Moncton through their Open Data Portal",
+        "source_url": "https://open.moncton.ca/datasets/sidewalk-outline",
+        "licence_url": "https://www5.moncton.ca/docs/Open_Data_Terms_of_Use.pdf",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Saint_John",
+        "statement": "Contains information licensed under the Open Government Licence – City of Saint John",
+        "source_url": "https://catalogue-saintjohn.opendata.arcgis.com/datasets/sidewalks-1/explore",
+        "licence_url": "",
+        "last_update": "2023"
+      }
+    ],
+    "Nova Scotia": [
+      {
+        "municipality": "Halifax",
+        "statement": "Contains information licenced under the Open Government Licence—Halifax",
+        "source_url": "https://data-hrm.hub.arcgis.com/datasets/active-travelways/about",
+        "licence_url": "https://www.halifax.ca/home/open-data/open-data-licence",
+        "last_update": "2023"
+      }
+    ],
+    "Ontario": [
+      {
+        "municipality": "Ajax",
+        "statement": "Contains public sector Information made available under The Corporation of the Town of Ajax's Open Data Portal",
+        "source_url": "https://opendata.ajax.ca/datasets/TownofAjax::recreational-trails/about",
+        "licence_url": "http://townofajax.maps.arcgis.com/sharing/rest/content/items/22e2d8e248724d7cb0310dc2db675abd/data",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Barrie",
+        "statement": "Contains information licensed under the Open Government Licence – Barrie.",
+        "source_url": "https://opendata.barrie.ca/datasets/barrie::sidewalk-walkway/about",
+        "licence_url": "https://www.barrie.ca/Online%20Services/PublishingImages/OpenData_Images/COB_DataLicense.pdf",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Brampton",
+        "statement": "Contains information made available by the City of Brampton through their Open Data portal",
+        "source_url": "https://geohub.brampton.ca/datasets/brampton::sidewalks/about",
+        "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Brantford",
+        "statement": "Contains information licensed under the Open Government Licence – Brantford.",
+        "source_url": "https://data-brantford.opendata.arcgis.com/datasets/97107fc9971d47cc8959adcb2fe31129_0/explore",
+        "licence_url": "https://data-brantford.opendata.arcgis.com/pages/licence",
+        "last_update": "2018"
+      },
+      {
+        "municipality": "Burlington",
+        "statement": "Contains information made available by the City of Burlington through their Open Data portal",
+        "source_url": "https://navburl-burlington.opendata.arcgis.com/datasets/Burlington::pedestrian-network/about",
+        "licence_url": "https://opendata.burlington.ca/opendata-terms-of-use/City%20of%20Burlington%20-%20Open%20Data%20Terms%20of%20Use.pdf",
+        "last_update": "2020"
+      },
+      {
+        "municipality": "Cambridge",
+        "statement": "Contains information licensed under the Open Government Licence – City of Cambridge.",
+        "source_url": "https://geohub.cambridge.ca/datasets/pedestrian-network/explore",
+        "licence_url": "https://www.cambridge.ca/en/your-city/resources/Open-Data-Licence-Version-2.pdf",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Cornwall",
+        "statement": "Contains information licensed under the Open Government Licence – City of Cornwall.",
+        "source_url": "https://data-cornwallcity.opendata.arcgis.com/datasets/cornwallcity::sidewalks-network/about",
+        "licence_url": "https://www.cornwall.ca/en/play-here/resources/Maps/City-of-Cornwall-Open-Government-Licence.pdf",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Greater_Sudbury",
+        "statement": "Contains information licensed under the Open Data Licence – City of Greater Sudbury",
+        "source_url": "https://opendata.greatersudbury.ca/maps/adcc3371d39344a0a75cd33b3ceeb75e/about",
+        "licence_url": "Request Permission",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Guelph",
+        "statement": "Contains information provided by the City of Guelph under an open government license",
+        "source_url": "https://explore.guelph.ca/datasets/fcf2afab991346f8bdf8e0233680b77d/explore",
+        "licence_url": "http://data.open.guelph.ca/pages/open-government-licence",
+        "last_update": "2016"
+      },
+      {
+        "municipality": "Hamilton",
+        "statement": "Contains public sector Data made available under the City of Hamilton’s Open Data Licence",
+        "source_url": "https://data-spatialsolutions.opendata.arcgis.com/datasets/ef238c1d00004cd1b162f11926a01ae5_5/explore",
+        "licence_url": "https://www.hamilton.ca/city-initiatives/strategies-actions/open-data-licence-terms-and-conditions",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Kawartha_Lakes",
+        "statement": "Contains information made available by the City of Kawartha Lakes through their Open Data Portal",
+        "source_url": "https://open-data-kawartha.hub.arcgis.com/datasets/53614a81fc4348458bb44cdeb07a38fd_0/about",
+        "licence_url": "https://ago-item-storage.s3.us-east-1.amazonaws.com/8166769837ab488785217db71b5c39b9/Disclaimer_and_Terms_of_Service.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQCzGDFbmWfiJKQgxVWT4uCdk7%2B9DMLvx8xFJTFm2sGDKgIgG9GqaceCPcFKuPLTM3fiHd6DGd%2FGrShOt9BXrpuAeL4q%2BgMIGRAAGgw2MDQ3NTgxMDI2NjUiDHwQHzUi2zUWjT9yQirXA3DuLc4GZJ5uu2J%2FzsixyvD5g3AxNp%2FUO7HPv5FxsUgj%2BdIZ8hPlhj2S4xIZ6NxMHtnc08eSTwvli2Rokh3CfI52jSmj6F21cjUbtuyfQmOZPdEGG9ybgLKsAhWekt6W%2B8ICp6gs%2FYxQpWyaK3PE3xIMmkcd8ytrWO3Fh7tcBHB0SQeLmQuEOHz4scE8%2BTcEeupesQRIsEBeXnto6%2BBrIdIbVLfIneyISVArpyjUtMNdhzFzW0tOzCu2qzkjw5P5ki386SZKmzgmp5xzdxg%2BLkxAJ4JHgYvpI9MyyLUj3ZgB03VrKBuUbAqjZSKj7XVeVO6s6i8LYW9JjrGPafGMtk8rMNGtfVVb69F3J%2F3RuN7%2F8S6Y644uzm2fp%2F81Tz5AhW1PkCkHao%2BK70DV2lG4r3NBkrxYWw6ZnBn7WO349SvD8xmpjS%2FiFbowuwQoWYl49HXAIac0EqwJb%2BTl8bjBo3cQhOlXJ%2B1HId1743dWyfymo5G1Kevl4SaRtFecn5eso%2B%2F1IpAKP%2FS9lCpdOA1WrJYyJYMuGNxbtBejoaA2B45ROosJpQ83I6kXdPv13ugpnIFutxqvEuvZdl87pwS67POJ5b571OU1DxbXgc2wqBLcoJ2cBDPd2jDc6paLBjqlAaTbH5rjD6UySDJ6C0riViES7bf%2BOlNvs727sSXui%2B5VqQyEYTQtLJCUIGlOXUt%2Bk8f%2BO2HAmgGIDzXv9nwSXSo%2BuOcNnzhAixdBXm%2BW9XbfoH%2BfDH5PqM9DuImCZ0zApTeNFs6wr5wKQIf31g%2B2LTq2SeYL%2Bps%2BJazqQf5MNWZWun3aZO1%2BlJANFQdzzTGY6Zro7oEp3SD80ZCRTdJ1T5iiXjDkAA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20211012T171059Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAYZTTEKKEQKTLNPXZ%2F20211012%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9b35ea009c760b52bd295280c972fd06b76779a4d09865f287d89aa83fd79c43",
+        "last_update": "2020"
+      },
+      {
+        "municipality": "Kingston",
+        "statement": "Contains information licensed under the Open Data Licence – City of Kingston",
+        "source_url": "https://opendatakingston.cityofkingston.ca/datasets/sidewalk-surface/explore",
+        "licence_url": "https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLicense.pdf",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Kitchener",
+        "statement": "Contains information licensed under the Open Government Licence - The Corporation of the City of Kitchener",
+        "source_url": "https://open-kitchenergis.opendata.arcgis.com/datasets/KitchenerGIS::walkability/about",
+        "licence_url": "https://www.kitchener.ca/en/council-and-city-administration/open-data-licence.aspx",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "London",
+        "statement": "Contains information made available by the City of London through their Open Data Portal",
+        "source_url": "https://opendata.london.ca/items/6dc013901d03481c822f1e0d0af4e7fa",
+        "licence_url": "https://london.maps.arcgis.com/sharing/rest/content/items/e31458fd0c7e41dd9f93144a9550781d/data",
+        "last_update": "2019"
+      },
+      {
+        "municipality": "Markham",
+        "statement": "Contains public sector Information made available under the City of Markham’s Open Data Licence",
+        "source_url": "https://data-markham.opendata.arcgis.com/datasets/trails/explore",
+        "licence_url": "https://data-markham.opendata.arcgis.com/pages/terms-of-use",
+        "last_update": "2022"
+      },
+      {
+        "municipality": "Milton",
+        "statement": "Contains information licensed under the Open Government Licence – Milton",
+        "source_url": "https://discover-milton.hub.arcgis.com/datasets/sidewalks-1/api",
+        "licence_url": "https://discover-milton.hub.arcgis.com/pages/disclaimer-and-terms-of-use",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Oakville",
+        "statement": "Contains information licensed under the Open Government Licence — Town of Oakville",
+        "source_url": "https://portal-exploreoakville.opendata.arcgis.com/maps/ExploreOakville::sidewalks-1",
+        "licence_url": "https://www.oakville.ca/data/open_data_licence.html",
+        "last_update": "2021"
+      },
+      {
+        "municipality": "Orangeville",
+        "statement": "Contains information licensed under the Open Government Licence – Orangeville",
+        "source_url": "https://data-orangeville.opendata.arcgis.com/items/552f3090a5fe480e832f5982b11f9552",
+        "licence_url": "https://data.orangeville.ca/opendata.html#licence",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Ottawa",
+        "statement": "Contains information licensed under the Open Government Licence – City of Ottawa",
+        "source_url": "https://open.ottawa.ca/datasets/ottawa::pedestrian-network-/about",
+        "licence_url": "https://ottawa.ca/en/city-hall/open-transparent-and-accountable-government/open-data#open-data-licence-version-2-0",
+        "last_update": "2024"
+      },
+      {
+        "municipality": "Peterborough",
+        "statement": "All intellectual property and other rights in and to the Dataset belong to the City of Peterborough.",
+        "source_url": "https://data-ptbo.opendata.arcgis.com/datasets/ptbo::pedestrian-network-area/about",
+        "licence_url": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Toronto",
+        "statement": "Contains information licensed under the Open Government Licence – Toronto",
+        "source_url": "https://www.arcgis.com/home/item.html?id=02263f6b44904b20bad6e05f30a77de3",
+        "licence_url": "https://open.toronto.ca/open-data-license/",
+        "last_update": "2020"
+      },
+      {
+        "municipality": "Waterloo",
+        "statement": "Contains information provided by the City of Waterloo under licence",
+        "source_url": "https://data.waterloo.ca/datasets/City-of-Waterloo::walkability-network/about",
+        "licence_url": "https://data.waterloo.ca/pages/open-data-licence",
+        "last_update": ""
+      },
+      {
+        "municipality": "Windsor",
+        "statement": "Contains information licensed under the Open Government Licence – The Corporation of the City of Windsor",
+        "source_url": "https://opendata.citywindsor.ca/Details/214",
+        "licence_url": "https://www.citywindsor.ca/opendata/Documents/OpenDataTermsofUse.pdf",
+        "last_update": "2023"
+      }
+    ],
+    "Quebec": [
+      {
+        "municipality": "Gatineau",
+        "statement": "Contient de l'information fournit par la Ville de Gatineau sous licence publique Creative Commons 4.0",
+        "source_url": "https://www.donneesquebec.ca/recherche/dataset/trottoirs",
+        "licence_url": "https://creativecommons.org/licenses/by/4.0/legalcode.fr",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Laval",
+        "statement": "Contient de l'information fournit par la Ville de Laval sous licence publique Creative Commons 4.0",
+        "source_url": "https://www.donneesquebec.ca/recherche/dataset/pistes-cyclables-et-pietonnieres",
+        "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Montreal",
+        "statement": "Contient de l'information fournit par la Ville de Montréal sous licence publique Creative Commons 4.0",
+        "source_url": "https://donnees.montreal.ca/dataset/geobase",
+        "licence_url": "https://creativecommons.org/licenses/by/4.0/legalcode.fr",
+        "last_update": "2025"
+      },
+      {
+        "municipality": "Quebec_City",
+        "statement": "Contient de l'information fournit par la Ville de Québec sous licence publique Creative Commons 4.0",
+        "source_url": "https://www.donneesquebec.ca/recherche/dataset/infrastructure-pietonne",
+        "licence_url": "https://www.donneesquebec.ca/politique-cadre/",
+        "last_update": "2023"
+      },
+      {
+        "municipality": "Rimouski",
+        "statement": "Contient de l'information fournit par la Ville de Rimouski sous licence publique Creative Commons 4.0",
+        "source_url": "https://www.donneesquebec.ca/recherche/dataset/infrapieton-rim",
+        "licence_url": "https://www.donneesquebec.ca/licence/#cc-by",
+        "last_update": "2025"
+      }
+    ],
+    "Saskatchewan": [
+      {
+        "municipality": "Regina",
+        "statement": "Contains information licensed under the Open Government Licence – City of Regina.",
+        "source_url": "https://open.regina.ca/dataset/pavement-linework/resource/436134eb-3298-4c8e-b98d-709c290d3b8f",
+        "licence_url": "https://www.regina.ca/terms/",
+        "last_update": ""
+      },
+      {
+        "municipality": "Saskatoon",
+        "statement": "Contains information made available by thte City of Saskatoon",
+        "source_url": "https://www.saskatoon.ca/moving-around/walking/walkways",
+        "licence_url": "http://opendata-saskatoon.cloudapp.net/TermsOfUse/TermsOfUse",
+        "last_update": "2016"
+      }
+    ]
+  }
+}

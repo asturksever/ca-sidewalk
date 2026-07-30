@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+# Builds the Vite app and bundles the PMTiles release asset into the Pages
+# artifact so tiles are served same-origin (release assets have no CORS).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tiles_tag:
+        description: Release tag holding canada_sidewalks.pmtiles
+        default: tiles-v1
+        required: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+        env:
+          GH_PAGES_BASE: /${{ github.event.repository.name }}/
+
+      - name: Bundle PMTiles into site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TILES_TAG: ${{ inputs.tiles_tag || 'tiles-v1' }}
+        run: |
+          mkdir -p dist/data
+          if gh release download "$TILES_TAG" --pattern '*.pmtiles' -D dist/data/; then
+            ls -lh dist/data/
+          else
+            echo "No tiles release yet — deploying app shell only (dev sample fallback)."
+            cp -R public/data/. dist/data/ 2>/dev/null || true
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

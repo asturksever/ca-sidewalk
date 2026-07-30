@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidewalks of Canada — unified pedestrian network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Top scrim so header text stays readable over map labels -->
+    <div id="top-scrim" aria-hidden="true"></div>
+
+    <!-- Maple banner -->
+    <header id="banner">
+      <div id="flag-bar" aria-hidden="true"></div>
+      <h1>
+        <svg id="maple" viewBox="0 0 512 512" aria-hidden="true">
+          <path
+            fill="#D80621"
+            d="M256 21l-36 74c-4 8-11 10-19 6l-30-16 22 116c2 12-6 16-14 7l-34-38-11 26c-2 5-7 8-13 7l-73-15 19 71c2 8 0 13-7 16l-24 11 122 100c6 5 8 12 6 19l-11 34 106-19c7-1 12 4 12 11l-4 78h18l-4-78c0-7 5-12 12-11l106 19-11-34c-2-7 0-14 6-19l122-100-24-11c-7-3-9-8-7-16l19-71-73 15c-6 1-11-2-13-7l-11-26-34 38c-8 9-16 5-14-7l22-116-30 16c-8 4-15 2-19-6z"
+          />
+        </svg>
+        Sidewalks of Canada
+      </h1>
+      <p id="subtitle">StatCan Pedestrian Network × OpenStreetMap — one conflated map</p>
+    </header>
+
+    <!-- Legend -->
+    <aside id="legend" aria-label="Network filters">
+      <h2>Source agreement</h2>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-both" checked />
+        <span class="swatch" style="--c:#D80621"></span> Both sources
+      </label>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-statcan" checked />
+        <span class="swatch" style="--c:#1D63C8"></span> StatCan only
+      </label>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-osm" checked />
+        <span class="swatch" style="--c:#E39B00"></span> OSM only
+      </label>
+      <h2 class="second">Infrastructure</h2>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-cls-sidewalk" checked />
+        <span>Sidewalks</span>
+      </label>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-cls-path" checked />
+        <span>Paths &amp; trails</span>
+      </label>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-cls-crossing" checked />
+        <span>Crossings, steps &amp; bridges</span>
+      </label>
+      <label class="toggle row">
+        <input type="checkbox" id="filter-cls-other" checked />
+        <span>Pedestrian streets &amp; other</span>
+      </label>
+      <button id="sources-open" type="button">Data sources</button>
+    </aside>
+
+    <!-- Layer toggles -->
+    <aside id="layers" aria-label="Map layers">
+      <h2>Layers</h2>
+      <label class="toggle">
+        <input type="checkbox" id="toggle-buildings" checked />
+        <span>3D buildings</span>
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="toggle-satellite" />
+        <span>Satellite imagery</span>
+      </label>
+    </aside>
+
+    <!-- Fly-to chips (animated marquee) -->
+    <nav id="places" aria-label="Fly to a city">
+      <button id="marquee-toggle" aria-pressed="false" aria-label="Pause city ticker">⏸</button>
+      <div class="marquee">
+        <div class="marquee-track">
+          <div class="marquee-set" data-set="main"></div>
+          <div class="marquee-set" data-set="clone" aria-hidden="true"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hover info card -->
+    <div id="info" hidden>
+      <div id="info-street"></div>
+      <div id="info-status"></div>
+      <div id="info-detail"></div>
+      <div id="info-loc"></div>
+    </div>
+
+    <!-- Data sources modal -->
+    <div id="sources-modal" hidden>
+      <div id="sources-card" role="dialog" aria-modal="true" aria-labelledby="sources-title">
+        <button id="sources-close" aria-label="Close">✕</button>
+        <h2 id="sources-title">Data sources &amp; licences</h2>
+        <div id="sources-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

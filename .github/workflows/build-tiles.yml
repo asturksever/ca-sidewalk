@@ -1,0 +1,69 @@
+name: Build PMTiles
+
+# Turns the conflated network (uploaded as a Release asset by the local
+# pipeline) into a national PMTiles archive, attached back to the release.
+# tippecanoe runs here because the dev machine cannot execute locally built
+# binaries.
+on:
+  workflow_dispatch:
+    inputs:
+      data_tag:
+        description: Release tag holding unified.parquet
+        default: data-v1
+        required: true
+      tiles_tag:
+        description: Release tag to attach canada_sidewalks.pmtiles to
+        default: tiles-v1
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  tiles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tippecanoe
+        run: |
+          git clone --depth 1 https://github.com/felt/tippecanoe
+          make -C tippecanoe -j"$(nproc)"
+          sudo make -C tippecanoe install
+          tippecanoe --version
+
+      - name: Download unified.parquet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${{ inputs.data_tag }}" --pattern 'unified*.parquet' -D data/
+
+      - name: Convert to FlatGeobuf
+        run: |
+          pip install --quiet pyogrio geopandas pyarrow
+          python - <<'EOF'
+          import glob
+          import geopandas as gpd
+          src = sorted(glob.glob('data/unified*.parquet'))
+          gdf = gpd.pd.concat([gpd.read_parquet(p) for p in src], ignore_index=True)
+          gdf = gpd.GeoDataFrame(gdf, crs=4326)
+          gdf.to_file('data/unified.fgb', driver='FlatGeobuf')
+          print(len(gdf), 'features')
+          EOF
+
+      - name: Tippecanoe
+        run: |
+          tippecanoe -o canada_sidewalks.pmtiles -l sidewalks -Z4 -z14 \
+            --drop-densest-as-needed --extend-zooms-if-still-dropping \
+            --coalesce --reorder --hilbert \
+            -y provenance -y cls -y street -y muni -y prov -y material -y width \
+            --force data/unified.fgb
+          ls -lh canada_sidewalks.pmtiles
+
+      - name: Attach tiles to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "${{ inputs.tiles_tag }}" >/dev/null 2>&1 \
+            || gh release create "${{ inputs.tiles_tag }}" --title "PMTiles ${{ inputs.tiles_tag }}" \
+                 --notes "National unified pedestrian network tiles"
+          gh release upload "${{ inputs.tiles_tag }}" canada_sidewalks.pmtiles --clobber
