@@ -18,7 +18,7 @@ print("=== National provenance totals (km) ===")
 print(con.execute(f"""
   SELECT provenance,
          COUNT(*) AS features,
-         ROUND(SUM(ST_Length_Spheroid(ST_GeomFromWKB(geometry)))/1000, 1) AS km
+         ROUND(SUM(ST_Length(ST_Transform(geometry, 'EPSG:4326', 'EPSG:3347', always_xy := true)))/1000, 1) AS km
   FROM read_parquet('{UNIFIED}')
   GROUP BY 1 ORDER BY 3 DESC
 """).df().to_string(index=False))
@@ -27,7 +27,7 @@ print("\n=== Per-municipality CPND match rate (top 40 by km) ===")
 print(con.execute(f"""
   WITH m AS (
     SELECT muni, prov, provenance,
-           SUM(ST_Length_Spheroid(ST_GeomFromWKB(geometry)))/1000 AS km
+           SUM(ST_Length(ST_Transform(geometry, 'EPSG:4326', 'EPSG:3347', always_xy := true)))/1000 AS km
     FROM read_parquet('{UNIFIED}')
     WHERE muni IS NOT NULL
     GROUP BY 1, 2, 3

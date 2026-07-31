@@ -75,7 +75,7 @@ def main():
         AND (access IS NULL OR access NOT IN ('private', 'no'))
         AND NOT (highway = 'path' AND foot = 'no')
         AND NOT (highway = 'cycleway' AND (foot IS NULL OR foot NOT IN ('yes', 'designated')))
-    """).arrow()
+    """).fetch_arrow_table()
 
     # Re-emit as real GeoParquet (with covering bbox) so 30_conflate.py can use
     # geopandas bbox pushdown; DuckDB COPY alone writes no geo metadata.

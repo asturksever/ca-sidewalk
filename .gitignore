@@ -8,3 +8,6 @@ vendor/
 *.zip
 .DS_Store
 !public/data/dev_sample.geojson
+files/
+__pycache__/
+*.pyc
