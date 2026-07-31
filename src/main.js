@@ -11,7 +11,8 @@ const DATA_BASE = `${import.meta.env.BASE_URL}data/`;
 const PMTILES_URL = new URL(`${DATA_BASE}canada_sidewalks.pmtiles`, location.href).href;
 const DEV_SAMPLE_URL = new URL(`${DATA_BASE}dev_sample.geojson`, location.href).href;
 
-const HOME = { center: [-96, 58], zoom: 3.2, pitch: 40, bearing: -5 };
+// zoom >= 4 so the sidewalk tiles (minzoom 4) are visible in the home view
+const HOME = { center: [-93, 51.5], zoom: 4.1, pitch: 35, bearing: -5 };
 
 async function pickDataSource() {
   // Dev servers answer missing paths with index.html, so verify the PMTiles

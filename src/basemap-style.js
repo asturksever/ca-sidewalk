@@ -55,13 +55,15 @@ export function buildStyle(data) {
     name: 'Sidewalks of Canada — maple red & winter white',
     glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',
     sky: {
-      'sky-color': '#DCEAF5',
-      'horizon-color': '#F2F6F9',
-      'fog-color': '#F7F9FB',
-      'sky-horizon-blend': 0.7,
-      'horizon-fog-blend': 0.6,
-      'fog-ground-blend': 0.9,
-      'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 6, 1, 8, 0.15],
+      'sky-color': '#C9E0F2',
+      'horizon-color': '#E8F1F8',
+      'fog-color': '#EDF3F8',
+      'sky-horizon-blend': 0.5,
+      'horizon-fog-blend': 0.4,
+      // keep fog/atmosphere near zero at national zoom: the near-white fog
+      // otherwise whites out the entire globe surface
+      'fog-ground-blend': 0.1,
+      'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.5, 3, 0.25, 5, 0],
     },
     projection: { type: 'globe' },
     sources: {
