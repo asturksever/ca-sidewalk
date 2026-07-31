@@ -1,11 +1,13 @@
 name: Build PMTiles
 
-# Turns the conflated network into a national PMTiles archive.
-# The dev machine cannot run tippecanoe (binary-authorization lockdown) and has
-# SSH-only GitHub access, so: scripts/41_push_data_branch.sh pushes
-# unified.parquet as <100 MB chunks on the `data` branch, this workflow fires
-# on that push, reassembles, tiles, and attaches the result to the tiles-v1
-# release using the runner's own token.
+# Reproduces the ENTIRE data pipeline on the runner — both inputs are public
+# URLs (StatCan CPND zip, Geofabrik Canada PBF) — then tiles with tippecanoe
+# and attaches canada_sidewalks.pmtiles to the tiles release. Nothing needs to
+# be uploaded from the dev machine (which can neither run tippecanoe under its
+# binary-authorization lockdown nor sustain large git pushes).
+#
+# Alternative trigger: pushing pre-conflated chunks on the `data` branch via
+# scripts/41_push_data_branch.sh skips straight to tiling (see `push:` below).
 on:
   push:
     branches: [data]
@@ -22,16 +24,9 @@ permissions:
 jobs:
   tiles:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: data
-
-      - name: Reassemble unified.parquet
-        run: |
-          ls -lh data-chunks/
-          cat data-chunks/unified.parquet.part-* > unified.parquet
-          ls -lh unified.parquet
 
       - name: Install tippecanoe
         run: |
@@ -40,15 +35,43 @@ jobs:
           sudo make -C /tmp/tippecanoe install
           tippecanoe --version
 
+      - name: Install Python deps
+        run: pip install --quiet duckdb pyogrio shapely pyarrow geopandas numpy quackosm
+
+      - name: Obtain unified.parquet
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code origin data >/dev/null 2>&1 && [ "${GITHUB_REF_NAME}" = "data" ]; then
+            echo "Using pre-conflated chunks from data branch"
+            cat data-chunks/unified.parquet.part-* > data/build/unified.parquet
+          else
+            echo "Running full pipeline from public sources"
+            mkdir -p data/raw data/build
+            # CPND (StatCan catalogue 34-26-0004)
+            curl -sL -o data/raw/cpnd.zip \
+              https://www150.statcan.gc.ca/n1/en/pub/34-26-0004/2025001/zip/canadian_pedestrian_network.zip
+            unzip -q data/raw/cpnd.zip -d data/raw/ && rm data/raw/cpnd.zip
+            python scripts/00_extract_cpnd.py
+            rm -rf data/raw/EN
+            # OSM Canada
+            curl -sL -o data/raw/canada-latest.osm.pbf \
+              https://download.geofabrik.de/north-america/canada-latest.osm.pbf
+            python scripts/11_filter_osm.py
+            rm -f data/raw/canada-latest.osm.pbf && rm -rf files
+            df -h /
+            python scripts/30_conflate.py
+          fi
+          ls -lh data/build/unified.parquet
+
       - name: Convert to FlatGeobuf
         run: |
-          pip install --quiet pyogrio geopandas pyarrow
           python - <<'EOF'
           import geopandas as gpd
-          gdf = gpd.read_parquet('unified.parquet')
+          gdf = gpd.read_parquet('data/build/unified.parquet')
           gdf.to_file('unified.fgb', driver='FlatGeobuf')
           print(len(gdf), 'features')
           EOF
+          rm -f data/build/unified.parquet
 
       - name: Tippecanoe
         run: |
@@ -67,6 +90,6 @@ jobs:
           gh release view "$TILES_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
             || gh release create "$TILES_TAG" --repo "$GITHUB_REPOSITORY" \
                  --title "PMTiles $TILES_TAG" \
-                 --notes "National unified pedestrian network tiles"
+                 --notes "National unified pedestrian network tiles (CPND x OSM)"
           gh release upload "$TILES_TAG" canada_sidewalks.pmtiles --clobber \
             --repo "$GITHUB_REPOSITORY"
